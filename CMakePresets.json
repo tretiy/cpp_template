@@ -1,0 +1,43 @@
+{
+    "version": 2,
+    "configurePresets": [
+        {
+            "name": "msvc",
+            "displayName": "Visual Studio Community 2022 Preview - x86_amd64",
+            "description": "Using compilers for Visual Studio 17 2022 (x86_x64 architecture)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "msvc-debug",
+            "displayName": "Visual Studio Community 2022 Preview - x86_amd64 - Debug",
+            "configurePreset": "msvc",
+            "configuration": "Debug",
+            "targets": [
+                "my_doc_tests",
+                "main"
+            ]
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "tests",
+            "description": "",
+            "displayName": "",
+            "configurePreset": "msvc",
+            "filter": {
+                "exclude": {
+                    "name": "add here test to exclude"
+                }
+            }
+        }
+    ]
+}
